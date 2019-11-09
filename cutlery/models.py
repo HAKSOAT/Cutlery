@@ -6,8 +6,8 @@ from django.utils import timezone
 
 class URLs(models.Model):
     time_created = models.DateTimeField()
-    link = models.URLField(unique=True)
-    alias = models.TextField(max_length=32)
+    link = models.URLField()
+    alias = models.TextField(unique=True)
 
     def save(self, *args, **kwargs):
         self.time_created = timezone.now()

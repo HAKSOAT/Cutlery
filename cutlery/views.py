@@ -50,26 +50,30 @@ def generate_url(request, alias):
 
 @api_view(['POST'])
 def generate_random_url(request):
+    if 'link' not in request.data.keys():
+        detail = ["link parameter must be provided"]
+        status_code = status.HTTP_400_BAD_REQUEST
+        raise ValidationError(detail,
+                              status_code)
+
     alias = generate_alias()
     num_of_exact_alias = URLs.objects.filter(alias__exact=alias).count()
     while num_of_exact_alias > 0:
         alias = generate_alias()
         num_of_exact_alias = URLs.objects.filter(alias__exact=alias).count()
-
-    try:
-        result = generate_url(request, alias)
-        return Response(result)
-    except KeyError as e:
-        logging.exception(e)
-
-        detail = ["{} parameter must be provided".format(e)]
-        status_code = status.HTTP_400_BAD_REQUEST
-        raise ValidationError(detail,
-                              status_code)
+    result = generate_url(request, alias)
+    return Response(result)
 
 
 @api_view(['POST'])
 def generate_custom_url(request):
+    if not {'link', 'alias'}.issubset(
+            set(request.data.keys())):
+        detail = ["link and alias parameters must be provided"]
+        status_code = status.HTTP_400_BAD_REQUEST
+        raise ValidationError(detail,
+                              status_code)
+
     alias = request.data['alias']
     num_of_exact_alias = URLs.objects.filter(alias__exact=alias).count()
     if num_of_exact_alias > 0:
