@@ -1,4 +1,4 @@
-This test URL shortner is currently hosted at [cutlery](cutlery.herokuapp.com) and has the following end points:
+This test URL shortner is currently hosted at [cutlery](https://cutlery.herokuapp.com) and has the following end points:
 
  - generate-random-url
 	 - Endpoint requires the following parameters: link.
@@ -13,5 +13,5 @@ This test URL shortner is currently hosted at [cutlery](cutlery.herokuapp.com) a
 	 - Endpoint returns a result similar to the following:
 		 - { "link": "http://linuxhint.com", "alias": "haks", "generated_link": "cutlery.herokuapp.com/haks"}
 
-On visiting the generated link, [cutlery](cutlery.herokuapp.com) redirects to the original link.
+On visiting the generated link, [cutlery](https://cutlery.herokuapp.com) redirects to the original link.
 
