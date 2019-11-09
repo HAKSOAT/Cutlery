@@ -129,4 +129,4 @@ STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
 # Prevents the dj_database_url module from requiring SSL to log in
-del DATABASES['default']['OPTIONS']['sslmode']
+# del DATABASES['default']['OPTIONS']['sslmode']
