@@ -1,5 +1,5 @@
-import logging
 import random
+import re
 import string
 
 from django.http import HttpResponseRedirect, HttpResponseNotFound
@@ -33,6 +33,9 @@ def generate_alias():
 
 def generate_url(request, alias):
     link = request.data['link']
+
+    if not re.match('(?:http|https)://', link):
+        link = "http://{}".format(link)
     host_name = request.get_host()
     generated_link = "{}/{}".format(host_name,
                                     alias)
