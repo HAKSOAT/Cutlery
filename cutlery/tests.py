@@ -82,6 +82,20 @@ def test_redirect(client):
 
     assert redirected_link == expected_link
 
+@pytest.mark.urls('cutlery.urls')
+@pytest.mark.django_db
+def test_redirect_for_nonhttp_url(client):
+    link = 'test_link.com'
+    alias = 'alias'
+    client.post('/generate-custom-url/', {'link': link,
+                                          'alias': alias})
+
+    response = client.get('/{}'.format(alias))
+    redirected_link = response.url
+    expected_link = "http://{}".format(link)
+
+    assert redirected_link == expected_link
+
 
 @pytest.mark.urls('cutlery.urls')
 @pytest.mark.django_db
