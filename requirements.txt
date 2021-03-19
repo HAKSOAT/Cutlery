@@ -3,7 +3,7 @@ attrs==19.3.0
 dj-database-url==0.5.0
 Django==2.2.7
 django-heroku==0.3.1
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 gunicorn==19.9.0
 importlib-metadata==0.23
 mock==3.0.5
